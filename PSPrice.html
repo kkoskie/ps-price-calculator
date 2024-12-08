@@ -40,4 +40,40 @@
     </style>
 </head>
 <body>
-    <h1>Park
+    <h1>Parkland Surplus Price Calculator</h1>
+    <p>Enter the retail price to find the Parkland Surplus price:</p>
+    <input type="number" id="retailPrice" placeholder="Enter retail price" min="0">
+    <button onclick="getPSPrice()">Calculate</button>
+    <p id="result"></p>
+    <script>
+        // Data from the Excel file
+        const priceRanges = [
+            { range: [5, 9], psPrice: 5 },
+            { range: [10, 15], psPrice: 9 },
+            { range: [16, 20], psPrice: 15 },
+            { range: [21, 26], psPrice: 20 },
+            { range: [27, 32], psPrice: 25 },
+            { range: [33, 38], psPrice: 30 },
+            { range: [39, 45], psPrice: 35 },
+            { range: [46, 50], psPrice: 40 },
+            { range: [51, 70], psPrice: 50 },
+            { range: [71, 100], psPrice: 75 },
+            { range: [101, 150], psPrice: 100 },
+            { range: [151, 200], psPrice: 150 },
+            { range: [201, 300], psPrice: 225 },
+        ];
+
+        function getPSPrice() {
+            const retailPrice = parseFloat(document.getElementById("retailPrice").value);
+            let result = "Price out of range.";
+            for (let i = 0; i < priceRanges.length; i++) {
+                if (retailPrice >= priceRanges[i].range[0] && retailPrice <= priceRanges[i].range[1]) {
+                    result = `Parkland Price: $${priceRanges[i].psPrice}`;
+                    break;
+                }
+            }
+            document.getElementById("result").innerText = result;
+        }
+    </script>
+</body>
+</html>
