@@ -49,7 +49,8 @@
         // Data from the Excel file
         const priceRanges = [
             { range: [5, 9], psPrice: 5 },
-            { range: [10, 15], psPrice: 9 },
+            { range: [10, 12], psPrice: 9 },
+            { range: [13, 15], psPrice: 12 },
             { range: [16, 20], psPrice: 16 },
             { range: [21, 25], psPrice: 20 },
             { range: [26, 31], psPrice: 25 },
@@ -88,14 +89,16 @@
             document.getElementById("result").innerText = result;
         }
 
-        // Allow the Enter key to trigger the calculation
+// Allow the Enter key to trigger the calculation
 document.getElementById("retailPrice").addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
         getPSPrice(); // Call the calculate function
     }
 });
-        // Automatically focus the cursor on the input box when the page loads
+
+// Automatically focus the cursor on the input box when the page loads
 document.getElementById("retailPrice").focus();
-    </script>
-</body>
-</html>
+
+// Automatically update price as user types
+document.getElementById("retailPrice").addEventListener("input", getPSPrice);
+
